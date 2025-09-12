@@ -1,0 +1,16 @@
+Company Name: Capgemini,  Mode: Virtual,  Date: 21/07/25
+1. How you would create infrastructure using Terraform.
+2. what happens when state file of terraform deleted.
+3. where do you store state file. 
+4. what are the parameters you take into consideration while scripting terraform file.
+5. what is state file. 
+6. What are the types of storage in gcp cloud.
+7. what are the types of GKE cluster in gcp cloud. 
+8. what are the issues did you face while managing GKE cluster.  
+9. what are the reason when you find out that status of your one of your pod goes on pending.
+10. which type of terraform you use in your environment. ( enterprise grade or open source) 
+11. how you would integrated Jenkins server with your gcp resources  and how you would configured it. 
+12. if you wanted to give access on GK cluster to a developer then which IAM role you would give him.
+13. which parameters you take into consideration while scripting load balancer.
+14. which Load Balancer you used in your environment.
+15. how you would deploy application on GKE cluster.
