@@ -1,0 +1,5 @@
+Company Name: L&T, Mode: Virtual, Position: Cloud Engineer,  Date:11/08/2025
+
+1. What are the things came into your mind when you are asked to create a highly available web application?
+2. Which services of GCP you have worked on?
+3. How often you take back up of storage in your environment?

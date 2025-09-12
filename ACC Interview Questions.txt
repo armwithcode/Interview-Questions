@@ -1,0 +1,12 @@
+Company Name: ACC(Applied Cloud Computing), Position: Cloud Operations Engineer(GCP & K8s),  date:12/09/25  Mode: Virtual
+
+1. Do you know about drift?
+2. Which services of GCP you have hands on?
+3. What are the status of pod in Kubernetes. Like pods ready, image pullbackoff, crash loopbackoff. Elaborate anyone?
+4. What do you mean by zero downtime deployment?
+5. What are difference between blue-green deployment and zero downtime deployment?
+6. What are namespaces in Kubernetes?
+7. What are state lock and correspondence condition in Terraform?
+8. How autoscaling can be achieved in Kubernetes. Explain HPA and VPA autoscaling?
+9. Coding related question. Asked to write a code?
+   
