@@ -1,0 +1,43 @@
+Company Name: Transcloud,  Position: Cloud Engineer,  Date: 19/09/2025,  Mode: Virtual
+
+1. If someone made changes to the file manually then how do you handle that situation in Terraform?
+- ​Handling manual changes to infrastructure resources is a key challenge when using Terraform. There are a few ways to address this, and the best approach depends on the situation.
+​1. The terraform refresh Command
+​The simplest way to bring your Terraform state file in line with the current state of your infrastructure is to use the terraform refresh command. This command queries the provider (e.g., AWS, Azure, GCP) to read the current state of all resources managed by your configuration. It then updates your local .tfstate file to reflect any changes that have been made outside of Terraform.
+​When to use it: Use this command to see what manual changes have been made and to update your state file. This is a read-only operation and doesn't modify your infrastructure.
+​Drawbacks: It only updates the state file. It doesn't modify your Terraform configuration (.tf files) to reflect the new state. This means the next time you run terraform plan, it will still show a difference between your configuration and the state, and terraform apply will try to revert the manual change.
+
+​2. The terraform plan Command
+​The terraform plan command is crucial for identifying manual changes. It compares your local Terraform configuration with the current state of the infrastructure (as recorded in the state file). When you run this command, it will show you a detailed list of all the resources that have been modified, along with what Terraform intends to do to bring the infrastructure back into the desired state defined in your configuration. This is the most important step to take after a manual change.
+​Example: If you manually changed a security group's ingress rule, terraform plan will show that Terraform intends to revert the rule back to what is defined in your .tf file.
+​Key Insight: This command acts as a "diff" tool, showing the discrepancy between your code and reality.
+​3. Reverting or Adopting Manual Changes
+​Once you've identified the manual changes with terraform plan, you have two primary options:
+​Option A: Revert the Manual Changes
+​This is the recommended approach to maintain consistency. You can simply run terraform apply. Terraform will then attempt to revert the manual changes, bringing the infrastructure back into the state defined in your configuration files.
+​When to use it: When the manual change was an error or a temporary fix that shouldn't be permanent. This enforces the principle of Infrastructure as Code (IaC), where your code is the single source of truth.
+​Option B: Adopt the Manual Changes into Your Terraform Configuration
+​If the manual change was intentional and needs to be permanent, you must update your Terraform configuration files (.tf files) to reflect the new state. After updating the files, run terraform plan again. This time, the output should show no changes, as your configuration now matches the infrastructure's state.
+​When to use it: When the manual change was a valid, necessary change that should be preserved. This is a common practice when developers or SREs need to make quick, critical changes in a production environment and then "catch up" the Terraform code afterward.
+​Pro Tip: This is a key part of managing state drift. Regular checks with terraform plan can help you identify and manage drift before it causes problems.
+
+2. If someone made changes to the infrastructure manually then how do you handle that situation?
+- ​You can handle a situation where someone made manual changes to infrastructure by using a reconciliation process. This process aims to align the actual state of the infrastructure with its desired state, which is typically defined in code or a configuration management system.
+​The Reconciliation Process
+​Detect the Change: First, you need a way to detect manual changes. This can be done by using tools that continuously monitor your infrastructure and compare its current state to the state defined in your code (e.g., in a Git repository). Many infrastructure-as-code (IaC) tools have a plan or diff command that can highlight these discrepancies.  
+​Rollback or Re-apply: Once a change is detected, you have two primary options:
+​Automated Rollback: If the change is unauthorized and needs to be undone immediately, a rollback can be initiated. The system automatically reverts the infrastructure to its last known good state, effectively "undoing" the manual change. This is the simplest and safest option in many cases.
+​Re-apply the Desired State: A more nuanced approach is to re-apply the desired state from your IaC. This will overwrite any manual changes and bring the infrastructure back into compliance with your codebase. This approach ensures that your code remains the single source of truth for your infrastructure's configuration.
+​Prevent Future Changes: To prevent this from happening again, you should implement stricter controls. This can include:
+​Removing Manual Access: Restrict direct access to production environments. Users should not be able to SSH into servers or make changes through a console. All changes should go through your automated deployment pipeline.  
+​Auditing and Alerts: Set up auditing and alerting to notify your team when a manual change is made. This helps to enforce the policy and provides a record of who made the change.  
+​Policy and Culture: Foster a culture of automation within your organization. Make it clear that all infrastructure changes must be handled through the established IaC and deployment pipelines. This isn't just a technical problem; it's a procedural and cultural one.
+​In short, the best way to handle manual infrastructure changes is to proactively prevent them and, when they do occur, have an automated process to detect and correct them by enforcing the desired state defined in your code.
+
+3. You have front-end and backend, how do you deploy application to GKE cluster with two source code?
+- ​Deploying an application with separate front-end and back-end source code to a Google Kubernetes Engine (GKE) cluster involves several steps. You'll need to containerize both applications, define Kubernetes manifests for each, and then apply those manifests to your GKE cluster.
+​Containerize Your Applications
+​First, you need to create a Dockerfile for both your front-end and back-end applications. A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image.
+​Front-end: Your front-end Dockerfile will typically build your static assets (e.g., using Node.js for a React app) and then serve them with a lightweight web server like Nginx.
+​Back-end: Your back-end Dockerfile will install dependencies and run your server application (e.g., a Python Flask app or a Node.js Express server).
+​After creating the Dockerfiles, you'll build a Docker image for each application.
