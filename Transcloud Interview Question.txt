@@ -1,4 +1,4 @@
-Company Name: Transcloud,  Position: Cloud Engineer,  Date: 19/09/2025,  Mode: Virtual
+Company Name: Transcloud,  Position: Cloud Engineer,  Date: 19/09/2025,  Mode: Virtual,  Type: Screening Call
 
 1. If someone made changes to the file manually then how do you handle that situation in Terraform?
 - ​Handling manual changes to infrastructure resources is a key challenge when using Terraform. There are a few ways to address this, and the best approach depends on the situation.
@@ -40,4 +40,5 @@ Company Name: Transcloud,  Position: Cloud Engineer,  Date: 19/09/2025,  Mode: V
 ​First, you need to create a Dockerfile for both your front-end and back-end applications. A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image.
 ​Front-end: Your front-end Dockerfile will typically build your static assets (e.g., using Node.js for a React app) and then serve them with a lightweight web server like Nginx.
 ​Back-end: Your back-end Dockerfile will install dependencies and run your server application (e.g., a Python Flask app or a Node.js Express server).
+
 ​After creating the Dockerfiles, you'll build a Docker image for each application.
